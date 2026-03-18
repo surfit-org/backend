@@ -192,5 +192,3 @@ fix/knowledge-card-bug
 </td>
 </tr>
 </table>
-
-하잉
