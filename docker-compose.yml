@@ -1,0 +1,21 @@
+services:
+  # MySQL 설정
+  db:
+    image: mysql:9.0
+    container_name: surfit-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: surfit_db
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+
+  # Redis 설정
+  redis:
+    image: redis:alpine
+    container_name: surfit-redis
+    restart: always
+    ports:
+      - "6379:6379"

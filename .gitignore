@@ -1,24 +1,39 @@
+## 1. Java & Gradle (Spring Boot 표준)
 .gradle
-**/build/
-!**/src/**/build/
-
-# Ignore Gradle GUI config
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+bin/
+out/
+.gradletasknamecache
 gradle-app.setting
-
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
-
-# Avoid ignore Gradle wrappper properties
 !gradle-wrapper.properties
 
-# Cache of project
-.gradletasknamecache
+## 2. 보안 및 환경 변수
+.env
+.env.*
+!.env.example
+application-secret.yml
+application-api-keys.yml
+/src/main/resources/application-*-secret.yml
 
-# Eclipse Gradle plugin generated files
-# Eclipse Core
+## 3. IDE 설정 (IntelliJ, Eclipse, VS Code)
+.idea/
+*.iws
+*.iml
+*.ipr
+.vscode/
 .project
-# JDT-specific (Eclipse Java Development Tools)
 .classpath
+.factorypath
+.settings/
+.springBeans
+.sts4-cache
+.apt_generated
 
-# Mac OS
+## 4. 시스템 및 로그
 .DS_Store
+*.log
+logs/
+HELP.md
