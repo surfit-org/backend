@@ -17,6 +17,38 @@
 | **@Schema** | DTO 필드 | 데이터 설명 및 **테스트용 예시값(example)** 설정 |
 | **@ApiResponse** | 메서드 상단 | 성공(200) 및 실패(400, 500 등) 상황별 응답 설명 |
 
+#### 테스트 컨트롤러 예시
+```java
+@Tag(name = "테스크 API", description = "스웨거 테스트")
+@RestController
+public class TestController {
+
+    @Operation(summary = "스웨거 테스트", description = "잘 돌아가네요^^")
+    @GetMapping("/ping")
+    public String ping() {
+        return "pong";
+    }
+
+    @Operation(summary = "DTO 및 응답 테스트", description = "데이터를 입력받아 그대로 돌려주는 기능입니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "요청 성공"),
+            @ApiResponse(responseCode = "400", description = "잘못된 요청 파라미터"),
+            @ApiResponse(responseCode = "500", description = "서버 오류")
+    })
+    @PostMapping("/test/echo")
+    public String echo(@RequestBody TestRequest request) {
+        return "보낸 메세지: " + request.getMessage();
+    }
+
+    // 테스트 DTO(원래는 다른 파일에)
+    @Getter
+    static class TestRequest {
+        @Schema(description = "서버로 보낼 메세지 테스트", example = "하이열 ㅋㅋ")
+        private String message;
+    }
+}
+```
+
 #### 사용 예시
 ```java
 @Tag(name = "News", description = "뉴스 요약 및 관리 API")
@@ -37,3 +69,4 @@ public class NewsRequest {
     @Schema(description = "기사 원문 URL", example = "[https://surfit.io/123](https://surfit.io/123)")
     private String url;
 }
+```
