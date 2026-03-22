@@ -37,3 +37,6 @@ application-api-keys.yml
 *.log
 logs/
 HELP.md
+
+# MySQL data files
+docker/mysql/data/
