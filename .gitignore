@@ -20,6 +20,7 @@ application-api-keys.yml
 
 ## 3. IDE 설정 (IntelliJ, Eclipse, VS Code)
 .idea/
+!.idea/codeStyles/
 *.iws
 *.iml
 *.ipr
