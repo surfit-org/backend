@@ -39,5 +39,4 @@ public class TestController {
 		@Schema(description = "서버로 보낼 메세지 테스트", example = "하이열 ㅋㅋ")
 		private String message;
 	}
-    
 }
