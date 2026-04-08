@@ -27,3 +27,8 @@ arirang:
     base-url: ${ARIRANG_API_BASE_URL}
     api-key: ${ARIRANG_API_KEY}
 
+gemini:
+  api:
+    base-url: https://generativelanguage.googleapis.com/v1beta/models
+    model: gemini-3-flash-preview
+    api-key: ${GEMINI_API_KEY}
