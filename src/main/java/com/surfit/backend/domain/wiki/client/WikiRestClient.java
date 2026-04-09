@@ -10,11 +10,14 @@ import com.surfit.backend.domain.wiki.client.dto.WikiImageInfoResponse;
 public class WikiRestClient implements WikiClient {
 	private static final String WIKI_API_BASE_URL = "https://ko.wikipedia.org";
 
-	private final RestClient restClient = RestClient.builder()
-		.baseUrl(WIKI_API_BASE_URL)
-		.defaultHeader("User-Agent",
-			"SurfitWikiBot/1.0")
-		.build();
+	private final RestClient restClient;
+
+	public WikiRestClient(RestClient.Builder restClientBuilder) {
+		this.restClient = restClientBuilder
+			.baseUrl(WIKI_API_BASE_URL)
+			.defaultHeader("User-Agent", "SurfitWikiBot/1.0")
+			.build();
+	}
 
 	@Override
 	public WikiArticleResponse fetchWikiArticle(String title) {
