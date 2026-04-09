@@ -3,7 +3,12 @@ package com.surfit.backend;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.surfit.backend.domain.wiki.client.WikiClient;
+import com.surfit.backend.domain.wiki.client.dto.WikiArticleResponse;
+import com.surfit.backend.domain.wiki.client.dto.WikiImageInfoResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -15,6 +20,24 @@ import lombok.Getter;
 @Tag(name = "테스크 API", description = "스웨거 테스트")
 @RestController
 public class TestController {
+
+	private final WikiClient wikiClient;
+
+	public TestController(WikiClient wikiClient) {
+		this.wikiClient = wikiClient;
+	}
+
+	@Operation(summary = "위키 본문 수집 테스트", description = "입력한 제목의 위키 본문을 가져옵니다.")
+	@GetMapping("/test/wiki/article")
+	public WikiArticleResponse testArticle(@RequestParam String title) {
+		return wikiClient.fetchWikiArticle(title);
+	}
+
+	@Operation(summary = "위키 이미지 정보 테스트", description = "입력한 제목의 문서에 포함된 이미지 상세 정보를 가져옵니다.")
+	@GetMapping("/test/wiki/images")
+	public WikiImageInfoResponse testImages(@RequestParam String title) {
+		return wikiClient.fetchImageBatch(title);
+	}
 
 	@Operation(summary = "스웨거 테스트", description = "잘 돌아가네요^^")
 	@GetMapping("/ping")
