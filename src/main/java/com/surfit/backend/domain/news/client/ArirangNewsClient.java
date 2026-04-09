@@ -31,6 +31,12 @@ public class ArirangNewsClient {
 		this.apiKey = apiKey;
 	}
 
+	/**
+	 * 아리랑 뉴스 API에서 오늘 날짜의 기사를 전부 수집해 반환
+	 * 페이지네이션을 반복하며 오늘 날짜가 아닌 기사가 나오면 수집을 중단
+	 *
+	 * @return 오늘 날짜 기사 리스트
+	 */
 	public List<ArirangNewsItem> fetchTodayNews() {
 		List<ArirangNewsItem> result = new ArrayList<>();
 		String today = LocalDate.now().format(DATE_FORMATTER);

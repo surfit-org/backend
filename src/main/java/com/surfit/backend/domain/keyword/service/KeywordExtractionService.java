@@ -50,6 +50,13 @@ public class KeywordExtractionService {
 		this.objectMapper = objectMapper;
 	}
 
+	/**
+	 * 오늘 날짜 뉴스를 수집하고 LLM으로 키워드 추출 및 카테고리 선별을 하여 KeywordPayload 리스트로 반환
+	 * LLM이 지식카드화 적합한 기사를 선별하고 primaryKeyword, fallbackKeyword, category, curationReason을 추출
+	 *
+	 * @return 키워드 및 뉴스 메타데이터가 담긴 KeywordPayload 리스트
+	 * @throws Exception LLM 호출 실패 또는 JSON 파싱 오류 시
+	 */
 	public List<KeywordPayload> extractKeywords() throws Exception {
 		List<ArirangNewsItem> newsList = arirangNewsClient.fetchTodayNews();
 
