@@ -7,6 +7,7 @@ public record KeywordPayload(
 	String newsTitle,
 	String newsContent,
 	String newsUrl,
+	String curationReason,
 	String broadcastDate
 ) {
 }
