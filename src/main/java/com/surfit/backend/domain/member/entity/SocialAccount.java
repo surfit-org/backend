@@ -1,4 +1,4 @@
-package com.surfit.backend.domain.user.entity;
+package com.surfit.backend.domain.member.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -24,8 +24,8 @@ public class SocialAccount {
     private String providerUserId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

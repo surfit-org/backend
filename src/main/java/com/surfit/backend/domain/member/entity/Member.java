@@ -1,4 +1,4 @@
-package com.surfit.backend.domain.user.entity;
+package com.surfit.backend.domain.member.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -9,10 +9,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "'user'")
+@Table(name = "member")
 @Getter
 @NoArgsConstructor
-public class User {
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
