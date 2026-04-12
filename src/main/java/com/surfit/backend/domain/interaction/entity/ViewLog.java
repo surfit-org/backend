@@ -3,7 +3,6 @@ package com.surfit.backend.domain.interaction.entity;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,8 +36,12 @@ public class ViewLog {
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 
-	@UpdateTimestamp
+	@Column
 	private LocalDateTime updatedAt;
+
+	public void touch() {
+		this.updatedAt = LocalDateTime.now();
+	}
 
 	// new ViewLog(null, memberId, postId, null, null); 이렇게 만들어도 되지만
 	// 나머지 값들은 어차피 자동으로 채워지니까 편의를 위해 아래 메소드를 만들었습니다.
@@ -46,6 +49,7 @@ public class ViewLog {
 		ViewLog viewLog = new ViewLog();
 		viewLog.memberId = memberId;
 		viewLog.postId = postId;
+		viewLog.updatedAt = LocalDateTime.now();
 		return viewLog;
 	}
 }

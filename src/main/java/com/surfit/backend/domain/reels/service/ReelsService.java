@@ -73,7 +73,14 @@ public class ReelsService {
 	 */
 	@Transactional
 	public void recordView(Long memberId, Long postId) {
-		viewLogRepository.findByMemberIdAndPostId(memberId, postId).ifPresentOrElse(viewLog -> {
-		}, () -> viewLogRepository.save(ViewLog.of(memberId, postId)));
+		viewLogRepository.findByMemberIdAndPostId(memberId, postId)
+			.ifPresentOrElse(
+				viewLog -> {
+					viewLog.touch();
+					viewLogRepository.save(viewLog);
+				},
+				() -> viewLogRepository.save(ViewLog.of(memberId, postId))
+			);
 	}
+
 }
