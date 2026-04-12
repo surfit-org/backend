@@ -1,0 +1,44 @@
+package com.surfit.backend.domain.member.entity;
+
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = "member")
+@Getter
+@NoArgsConstructor
+public class Member {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Column(nullable = false, unique = true, length = 100)
+	private String email;
+
+	@Column(nullable = false, length = 50)
+	private String nickname;
+
+	@Column(columnDefinition = "TEXT")
+	private String profileImageUrl;
+
+	@Column(nullable = false, length = 10)
+	private String role; // "USER", "ADMIN" 구분, 차후 구독형 시스템이 되면 확장 고려
+
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+
+	@UpdateTimestamp
+	private LocalDateTime updatedAt;
+}
